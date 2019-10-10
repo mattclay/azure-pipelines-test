@@ -5,11 +5,11 @@ pool:
   vmImage: 'ubuntu-latest'
 
 jobs:
-  - job: Job One
+  - job: Job_One
     steps:
       - script: echo One
         displayName: Name One
-  - job: Job Two
+  - job: Job_Two
     steps:
       - script: echo Two
         displayName: Name Two
