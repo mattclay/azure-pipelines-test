@@ -6,9 +6,9 @@ var_name = 'config'
 config = dict()
 
 for job in range(1, 150):
-    key = 'T%02d' % job
+    key = 'T%03d' % job
     config[key] = dict(
-        name='Test #%02d' % job,
+        name='Test #%03d' % job,
     )
 
 var_value = json.dumps(config, sort_keys=True)
