@@ -3,15 +3,15 @@
 import json
 
 var_name = 'config'
-config = dict(
-    a=dict(
-        name='A',
-    ),
-    b=dict(
-        name='B',
-    ),
-)
-var_value = json.dumps(config)
+config = dict()
+
+for job in range(1, 20):
+    key = 'T%02d' % job
+    config[key] = dict(
+        name='Test #%02d' % job,
+    )
+
+var_value = json.dumps(config, sort_keys=True)
 
 # see https://docs.microsoft.com/en-us/azure/devops/pipelines/scripts/logging-commands?view=azure-devops&tabs=bash
 print('Setting variable: %s' % var_name)
