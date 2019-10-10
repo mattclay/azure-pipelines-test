@@ -5,7 +5,20 @@ pool:
   vmImage: 'ubuntu-latest'
 
 jobs:
-  - job: Job_One
+  - job: Start
     steps:
-      - script: echo One
-        displayName: Name One
+      - script: echo Start
+  - job: T1
+    steps:
+      - script: echo T1
+    dependsOn: Start
+  - job: T2
+    steps:
+      - script: echo T2
+    dependsOn: Start
+  - job: Stop
+    steps:
+      - script: echo Stop
+    dependsOn:
+      - T1
+      - T2
