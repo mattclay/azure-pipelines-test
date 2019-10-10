@@ -1,24 +1,26 @@
 trigger:
-  - master
+  batch: true
+  branches:
+    include:
+      - master
+
+pr:
+  autoCancel: true
+  branches:
+    include:
+      - master
 
 pool:
   vmImage: 'ubuntu-latest'
 
 jobs:
-  - job: Start
+  - job: init
     steps:
-      - script: echo Start
-  - job: T1
+      - name: init_matrix
+        bash: ./init.py
+  - job: matrix
+    dependsOn: init
+    strategy:
+      matrix: $[ dependencies.generator.outputs['init_matrix.config'] ]
     steps:
-      - script: echo T1
-    dependsOn: Start
-  - job: T2
-    steps:
-      - script: echo T2
-    dependsOn: Start
-  - job: Stop
-    steps:
-      - script: echo Stop
-    dependsOn:
-      - T1
-      - T2
+      - script: echo $(name)
