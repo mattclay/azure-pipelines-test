@@ -23,4 +23,4 @@ jobs:
     strategy:
       matrix: $[ dependencies.init.outputs['init_matrix.config'] ]
     steps:
-      - script: echo "$(name)" && date
+      - script: ./test.py "$(name)"
