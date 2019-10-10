@@ -16,8 +16,8 @@ pool:
 jobs:
   - job: init
     steps:
-      - bash: ./init.py
-        name: matrix
+      - script: ./init.py
+        name: init_matrix
   - job: matrix
     dependsOn: init
     strategy:
