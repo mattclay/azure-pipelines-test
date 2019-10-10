@@ -21,6 +21,6 @@ jobs:
   - job: matrix
     dependsOn: init
     strategy:
-      matrix: $[ dependencies.generator.outputs['init_matrix.config'] ]
+      matrix: $[ dependencies.init.outputs['init_matrix.config'] ]
     steps:
       - script: echo $(name)
