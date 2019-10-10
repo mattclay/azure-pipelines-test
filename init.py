@@ -5,7 +5,7 @@ import json
 var_name = 'config'
 config = dict()
 
-for job in range(1, 10):
+for job in range(1, 3):
     key = 'T%03d' % job
     config[key] = dict(
         name='Test #%03d' % job,
