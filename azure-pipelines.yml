@@ -9,11 +9,22 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+jobs:
+- job: Build
+  strategy:
+    matrix:
+      Python35:
+        PYTHON_VERSION: '3.5'
+      Python36:
+        PYTHON_VERSION: '3.6'
+      Python37:
+        PYTHON_VERSION: '3.7'
+    maxParallel: 2
+  steps:
+  - script: echo Hello, world!
+    displayName: 'Run a one-line script'
 
-- script: |
+  - script: |
     echo Add other tasks to build, test, and deploy your project.
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
