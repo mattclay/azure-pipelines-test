@@ -9,7 +9,3 @@ jobs:
     steps:
       - script: echo One
         displayName: Name One
-  - job: Job_Two
-    steps:
-      - script: echo Two
-        displayName: Name Two
