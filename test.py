@@ -34,7 +34,11 @@ if name == 'Job #003':
     tgz = tarfile.TarFile.open(file_path)
     tgz.extractall(coverage_path)
     ansible_path = os.path.abspath('ansible')
-    os.rename('coverage/coverage=units=python-3.8.xml', 'coverage/coverage.xml')
+    with open('coverage/coverage=units=python-3.8.xml', 'r') as input_file:
+        xml = input_file.read()
+    xml = xml.replace('<source>/root/src/github.com/ansible/ansible</source>', '<source>%s</source>' % ansible_path)
+    with open('coverage/coverage.xml', 'w') as output_file:
+        output_file.write(xml)
     subprocess.check_output(['git', 'clone', 'https://github.com/ansible/ansible'])
     subprocess.check_output(['git', 'checkout', '022335669cc1732939cc609f8dcdc5ad75a42439'], cwd=ansible_path)
     print('Code is in: %s' % ansible_path)

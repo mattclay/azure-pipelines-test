@@ -38,5 +38,4 @@ jobs:
         inputs:
           codeCoverageTool: 'Cobertura'
           summaryFileLocation: 'coverage/coverage.xml'
-          pathToSources: '$(System.DefaultWorkingDirectory)/ansible'
           failIfCoverageEmpty: False
