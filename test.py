@@ -8,6 +8,6 @@ print('Hello my job name is: %s' % name)
 
 if name == 'Test #001':
     print('Fail')
-    sys.exit(1)  # comment
+    sys.exit(1)
 
 print('Pass')
