@@ -23,6 +23,9 @@ jobs:
     strategy:
       matrix: $[ dependencies.init.outputs['init_matrix.config'] ]
     steps:
+      - task: UsePythonVersion@0
+          inputs:
+            versionSpec: '3.6'
       - script: ./test.py "$(name)" "$(download)"
       - task: PublishTestResults@2
         inputs:
