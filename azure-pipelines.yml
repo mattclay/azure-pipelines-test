@@ -34,9 +34,9 @@ jobs:
           mergeTestResults: True
           failTaskOnFailedTests: True
           publishRunAttachments: True
-      - task: PublishCodeCoverageResults@2
+      - task: PublishCodeCoverageResults@1
         inputs:
           codeCoverageTool: 'Cobertura'
-          summaryFileLocation: 'coverage/*.xml'
+          summaryFileLocation: 'coverage/coverage.xml'
           pathToSources: '$(System.DefaultWorkingDirectory)/ansible'
           failIfCoverageEmpty: False
