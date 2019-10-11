@@ -23,7 +23,7 @@ if download:
     tgz = tarfile.TarFile.open(file_path)
     tgz.extractall(result_path)
 
-if name == 'Job #001':
+if name == 'Job #003':
     file_name = 'coverage.tgz'
     file_path = os.path.abspath(file_name)
     urllib.request.urlretrieve('https://public-demo-files.s3.amazonaws.com/' + file_name, filename=file_name)
