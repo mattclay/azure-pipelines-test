@@ -6,9 +6,9 @@ var_name = 'config'
 config = dict()
 
 for job in range(1, 3 + 1):
-    key = 'T%03d' % job
+    key = 'J%03d' % job
     config[key] = dict(
-        name='Test #%03d' % job,
+        name='Job #%03d' % job,
     )
 
 var_value = json.dumps(config, sort_keys=True)
@@ -17,3 +17,5 @@ var_value = json.dumps(config, sort_keys=True)
 print('Setting variable: %s' % var_name)
 print('##vso[task.setVariable variable=%s;isOutput=true]%s' % (var_name, var_value))
 print('Variable has been set to: %s' % var_value)
+
+# comment
