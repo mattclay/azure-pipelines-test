@@ -34,3 +34,8 @@ jobs:
           mergeTestResults: True
           failTaskOnFailedTests: True
           publishRunAttachments: True
+      - task: PublishCodeCoverageResults@1
+        inputs:
+          codeCoverageTool: 'Cobertura'
+          summaryFileLocation: 'coverage/coverage.xml'
+          failIfCoverageEmpty: False

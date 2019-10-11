@@ -23,6 +23,16 @@ if download:
     tgz = tarfile.TarFile.open(file_path)
     tgz.extractall(result_path)
 
+if name == 'Job #001':
+    file_name = 'coverage.tgz'
+    file_path = os.path.abspath(file_name)
+    urllib.request.urlretrieve('https://public-demo-files.s3.amazonaws.com/' + file_name, filename=file_name)
+    coverage_path = os.path.abspath('coverage')
+    if not os.path.exists(coverage_path):
+        os.mkdir(coverage_path)
+    tgz = tarfile.TarFile.open(file_path)
+    tgz.extractall(coverage_path)
+    os.rename('coverage/coverage=units=python-3.8.xml', 'coverage/coverage.xml')
 
 if name == 'Test #001':
     print('Fail')
