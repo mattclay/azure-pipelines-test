@@ -4,6 +4,7 @@ import sys
 import urllib.request
 import os
 import tarfile
+import subprocess
 
 name = sys.argv[1]
 download = sys.argv[2]
@@ -33,6 +34,8 @@ if name == 'Job #003':
     tgz = tarfile.TarFile.open(file_path)
     tgz.extractall(coverage_path)
     os.rename('coverage/coverage=units=python-3.8.xml', 'coverage/coverage.xml')
+    subprocess.check_output(['git', 'clone', 'https://github.com/ansible/ansible'])
+    subprocess.check_output(['git', 'checkout', '022335669cc1732939cc609f8dcdc5ad75a42439'], cwd=os.path.abspath('ansible'))
 
 if name == 'Test #001':
     print('Fail')
