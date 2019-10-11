@@ -33,9 +33,11 @@ if name == 'Job #003':
         os.mkdir(coverage_path)
     tgz = tarfile.TarFile.open(file_path)
     tgz.extractall(coverage_path)
+    ansible_path = os.path.abspath('ansible')
     os.rename('coverage/coverage=units=python-3.8.xml', 'coverage/coverage.xml')
     subprocess.check_output(['git', 'clone', 'https://github.com/ansible/ansible'])
-    subprocess.check_output(['git', 'checkout', '022335669cc1732939cc609f8dcdc5ad75a42439'], cwd=os.path.abspath('ansible'))
+    subprocess.check_output(['git', 'checkout', '022335669cc1732939cc609f8dcdc5ad75a42439'], cwd=ansible_path)
+    print('Code is in: %s' % ansible_path)
 
 if name == 'Test #001':
     print('Fail')
