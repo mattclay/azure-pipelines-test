@@ -23,4 +23,11 @@ jobs:
     strategy:
       matrix: $[ dependencies.init.outputs['init_matrix.config'] ]
     steps:
-      - script: ./test.py "$(name)"
+      - script: ./test.py "$(name)" "$(download)"
+      - task: PublishTestResults@2
+        inputs:
+          testResultsFormat: 'JUnit'
+          testResultsFiles: 'results/*.xml'
+          mergeTestResults: True
+          failTaskOnFailedTests: True
+          publishRunAttachments: True

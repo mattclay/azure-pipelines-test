@@ -5,10 +5,17 @@ import json
 var_name = 'config'
 config = dict()
 
+downloads = [
+    'units',
+    'unstable',
+    'failed',
+]
+
 for job in range(1, 3 + 1):
     key = 'J%03d' % job
     config[key] = dict(
         name='Job #%03d' % job,
+        download=downloads.pop() if downloads else '',
     )
 
 var_value = json.dumps(config, sort_keys=True)
