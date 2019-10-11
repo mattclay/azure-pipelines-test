@@ -17,3 +17,5 @@ var_value = json.dumps(config, sort_keys=True)
 print('Setting variable: %s' % var_name)
 print('##vso[task.setVariable variable=%s;isOutput=true]%s' % (var_name, var_value))
 print('Variable has been set to: %s' % var_value)
+
+# comment
