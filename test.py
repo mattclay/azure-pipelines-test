@@ -9,7 +9,12 @@ import subprocess
 name = sys.argv[1]
 download = sys.argv[2]
 
+clear = '\033[0m'
+red = '\033[31m'
+
+print(red)
 print('Hello my job name is: %s' % name)
+print(clear)
 
 if download:
     file_name = '%s.tgz' % download
