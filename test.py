@@ -7,8 +7,10 @@ name = sys.argv[1]
 
 print('Hello my job name is: %s' % name)
 
-if random.randint(1, 3) == 1:
-    print('Fail')
+value = random.randint(1, 3)
+
+if value == 1:
+    print('Fail: %s' % value)
     sys.exit(1)  # intentional failure
 
 print('Pass')
