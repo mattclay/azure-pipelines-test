@@ -14,13 +14,15 @@ pool:
   vmImage: 'ubuntu-latest'
 
 jobs:
-  - job: init
-    steps:
-      - script: ./init.py
-        name: init_matrix
   - job: matrix
     dependsOn: init
     strategy:
-      matrix: $[ dependencies.init.outputs['init_matrix.config'] ]
+      matrix:
+        Job1:
+          name: One
+        Job2:
+          name: Two
+        Job3:
+          name: Three
     steps:
       - script: ./test.py "$(name)"
