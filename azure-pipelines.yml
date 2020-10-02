@@ -15,7 +15,6 @@ pool:
 
 jobs:
   - job: matrix
-    dependsOn: init
     strategy:
       matrix:
         Job1:
