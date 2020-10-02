@@ -14,14 +14,8 @@ pool:
   vmImage: 'ubuntu-latest'
 
 jobs:
-  - job: matrix
-    strategy:
-      matrix:
-        Job1:
-          name: One
-        Job3:
-          name: Three
-        Job4:
-          name: Four
+  - job: new
     steps:
-      - script: ./test.py "$(name)"
+      - script: echo Hello World
+        displayName: Hello World
+
