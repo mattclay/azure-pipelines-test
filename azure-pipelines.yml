@@ -21,6 +21,16 @@ jobs:
   - job: matrix
     dependsOn: init
     strategy:
-      matrix: $[ dependencies.init.outputs['init_matrix.config'] ]
+      matrix:
+        J001:
+          name: "Job #001"
+        J002:
+          name: "Job #002"
+        J003:
+          name: "Job #003"
+        J004:
+          name: "Job #004"
+        J005:
+          name: "Job #005"
     steps:
       - script: ./test.py "$(name)"
