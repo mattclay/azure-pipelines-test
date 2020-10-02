@@ -19,9 +19,9 @@ jobs:
       matrix:
         Job1:
           name: One
-        Job2:
-          name: Two
         Job3:
           name: Three
+        Job4:
+          name: Four
     steps:
       - script: ./test.py "$(name)"
