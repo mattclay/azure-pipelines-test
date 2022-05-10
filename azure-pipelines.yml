@@ -27,17 +27,17 @@ stages:
         steps:
           - script: echo Hi
             displayName: Hi
-#  - stage: Remote
-#    dependsOn:
-#      - Local
-#    jobs:
-#      - template: templates/build.yml
-#        parameters:
-#          remotes:
-#            - name: RHEL 8.5
-#              code: rhel/8.5,python=3.9
-#            - name: Ubuntu 22.04
-#              code: ubuntu/22.04
-#          architectures:
-#            - x86_64
-#            - aarch64
+  - stage: Remote
+    dependsOn:
+      - Local
+    jobs:
+      - template: templates/build.yml
+        parameters:
+          remotes:
+            - name: RHEL 8.5
+              code: rhel/8.5,python=3.9
+            - name: Ubuntu 22.04
+              code: ubuntu/22.04
+          architectures:
+            - x86_64
+            - aarch64
