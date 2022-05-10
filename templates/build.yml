@@ -8,7 +8,7 @@ jobs:
   - ${{ each remote in parameters.remotes }}:
       - ${{ each arch in parameters.architectures }}:
           - job: "integration_${{ replace(replace(replace(replace(remote.code, '/', '_'), '.', '_'), ',', '_'), '=', '_') }}_${{ arch }}"
-            displayName: "${{ remote.name }} on {{ arch }}"
+            displayName: "${{ remote.name }} on ${{ arch }}"
             steps:
               - script: >
                   echo
