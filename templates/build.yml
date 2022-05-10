@@ -10,9 +10,13 @@ jobs:
           - job: "integration_${{ replace(replace(replace(replace(remote.code, '/', '_'), '.', '_'), ',', '_'), '=', '_') }}_${{ arch }}"
             displayName: "${{ remote.name }} on ${{ arch }}"
             steps:
+              - script: echo pip install . --disable-pip-version-check --user
+                displayName: Install
               - script: >
-                  echo
+                  echo build
                   --tag "quay.io/ansible/scratchpad:integration-${{ arch }}"
                   --arch "${{ arch }}"
                   --remote "${{ remote.code }}"
+                  --context test/contexts/simple
+                  --no-login
                 displayName: Build

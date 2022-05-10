@@ -17,16 +17,20 @@ stages:
     jobs:
       - job: Lint
         steps:
-          - script: echo Hi
-            displayName: Hi
+          - script: echo pip install -r test/requirements/nox.txt --disable-pip-version-check --user
+            displayName: Install nox
+          - script: echo nox
+            displayName: Run linters using nox
   - stage: Local
     dependsOn:
       - Check
     jobs:
       - job: Test
         steps:
-          - script: echo Hi
-            displayName: Hi
+          - script: echo pip install -r test/requirements/nox.txt --disable-pip-version-check --user
+            displayName: Install nox
+          - script: echo nox -e pytest -- -m 'not remote and not credentials'
+            displayName: Run pytest using nox
   - stage: Remote
     dependsOn:
       - Local
