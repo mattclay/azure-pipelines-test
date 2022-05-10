@@ -1,0 +1,18 @@
+parameters:
+  - name: remotes
+    type: object
+  - name: architectures
+    type: object
+
+jobs:
+  - ${{ each remote in parameters.remotes }}:
+      - ${{ each arch in parameters.architectures }}:
+          - job: "integration_${{ replace(replace(replace(replace(remote.code, '/', '_'), '.', '_'), ',', '_'), '=', '_') }}_$(arch)"
+            displayName: "$(remote.name) on $(arch)"
+            steps:
+              - script: >
+                  echo
+                  --tag "quay.io/ansible/scratchpad:integration-$(arch)"
+                  --arch "$(arch)"
+                  --remote "$(remote.code)"
+                displayName: Build
