@@ -14,7 +14,7 @@ jobs:
                 displayName: Install
               - script: >
                   echo build
-                  --tag "quay.io/ansible/scratchpad:integration-${{ arch }}"
+                  --tag "example.com/repo/name:tag"
                   --arch "${{ arch }}"
                   --remote "${{ remote.code }}"
                   --context test/contexts/simple

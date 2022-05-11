@@ -12,30 +12,20 @@ pool:
   vmImage: 'ubuntu-20.04'
 
 stages:
-  - stage: Check
-    dependsOn: []
-    jobs:
-      - job: Lint
-        steps:
-          - script: echo pip install -r test/requirements/nox.txt --disable-pip-version-check --user
-            displayName: Install nox
-          - script: echo nox
-            displayName: Run linters using nox
   - stage: Local
-    dependsOn:
-      - Check
+    dependsOn: []
     jobs:
       - job: Test
         steps:
           - script: echo pip install -r test/requirements/nox.txt --disable-pip-version-check --user
             displayName: Install nox
-          - script: echo nox -e pytest -- -m 'not remote and not credentials'
-            displayName: Run pytest using nox
+          - script: echo nox -e all -- -m 'not remote and not credentials'
+            displayName: Run nox
   - stage: Remote
     dependsOn:
       - Local
     jobs:
-      - template: templates/build.yml
+      - template: templates/matrix.yml
         parameters:
           remotes:
             - name: RHEL 8.5
