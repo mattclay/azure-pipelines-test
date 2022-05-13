@@ -17,7 +17,7 @@ stages:
     jobs:
       - job: Test
         steps:
-          - script: echo pip install -r test/requirements/nox.txt --disable-pip-version-check --user
+          - script: pip install -r test/requirements/nox.txt --disable-pip-version-check --user
             displayName: Install nox
           - script: echo nox -e all -- -m 'not remote and not credentials'
             displayName: Run nox
