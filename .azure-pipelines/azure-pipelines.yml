@@ -11,6 +11,9 @@ pr:
 pool:
   vmImage: 'ubuntu-22.04'
 
+variables:
+  FORCE_COLOR: yes
+
 stages:
   - stage: Local
     dependsOn: []
