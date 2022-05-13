@@ -9,10 +9,11 @@ pr:
       - main
 
 pool:
-  vmImage: 'ubuntu-22.04'
+  vmImage: 'ubuntu-20.04'
 
 variables:
-  FORCE_COLOR: yes
+  python_version: '3.10'
+  force_color: yes
 
 stages:
   - stage: Local
@@ -20,6 +21,10 @@ stages:
     jobs:
       - job: Test
         steps:
+          - task: UsePythonVersion@0
+            inputs:
+              versionSpec: $(python_version)
+            displayName: Use Python
           - script: pip install -r test/requirements/nox.txt --disable-pip-version-check --user
             displayName: Install nox
           - script: nox -e all -- -m 'not remote and not credentials'
