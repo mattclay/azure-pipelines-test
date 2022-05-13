@@ -1,21 +1,37 @@
 trigger:
-  batch: true
   branches:
     include:
-      - master
+      - main
 
 pr:
-  autoCancel: true
   branches:
     include:
-      - master
+      - main
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: 'ubuntu-20.04'
 
-jobs:
-  - job: new
-    steps:
-      - script: echo Hello World
-        displayName: Hello World
-
+stages:
+  - stage: Local
+    dependsOn: []
+    jobs:
+      - job: Test
+        steps:
+          - script: pip install -r test/requirements/nox.txt --disable-pip-version-check --user
+            displayName: Install nox
+          - script: nox -e all -- -m 'not remote and not credentials'
+            displayName: Run nox
+  - stage: Remote
+    dependsOn:
+      - Local
+    jobs:
+      - template: templates/matrix.yml
+        parameters:
+          remotes:
+            - name: RHEL 8.6
+              code: rhel/8.6,python=3.9
+            - name: Ubuntu 22.04
+              code: ubuntu/22.04
+          architectures:
+            - x86_64
+            - aarch64

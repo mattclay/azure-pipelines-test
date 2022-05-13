@@ -10,11 +10,11 @@ jobs:
           - job: "integration_${{ replace(replace(replace(replace(remote.code, '/', '_'), '.', '_'), ',', '_'), '=', '_') }}_${{ arch }}"
             displayName: "${{ remote.name }} on ${{ arch }}"
             steps:
-              - script: echo pip install . --disable-pip-version-check --user
+              - script: pip install . --disable-pip-version-check --user
                 displayName: Install
               - script: >
-                  echo build
-                  --tag "example.com/repo/name:tag"
+                  containmint build
+                  --tag "example.com/repo/name:latest"
                   --arch "${{ arch }}"
                   --remote "${{ remote.code }}"
                   --context test/contexts/simple
