@@ -16,6 +16,11 @@ pool:
 jobs:
   - job: new
     steps:
-      - script: echo Hello World
-        displayName: Hello World
-
+      - script: env
+        displayName: Show Environment
+    strategy:
+      matrix:
+        one:
+          some_var: A
+        two:
+          some_var: B
