@@ -14,8 +14,49 @@ pool:
   vmImage: 'ubuntu-latest'
 
 jobs:
-  - job: new
+  - job: check_posix
+    displayName: Check POSIX
     steps:
-      - script: echo Hello World
-        displayName: Hello World
-
+      - script: pip install https://github.com/ansible/ansible/archive/devel.tar.gz --disable-pip-version-check --user
+        displayName: Install ansible-core
+      - script: "ansible-test shell --remote-stage dev --target-posix remote:$(remote) -v -- uname -a"
+        displayName: Check instance
+    strategy:
+      matrix:
+        rhel_79_x86_64:
+          remote: rhel/7.9,arch=x86_64
+        rhel_86_x86_64:
+          remote: rhel/8.6,arch=x86_64
+        rhel_86_aarch64:
+          remote: rhel/8.6,arch=aarch64
+        ubuntu_2204_x86_64:
+          remote: ubuntu/22.04,arch=x86_64
+        ubuntu_2204_aarch64:
+          remote: ubuntu/22.04,arch=aarch64
+        freebsd_123_x86_64:
+          remote: freebsd/12.3,arch=x86_64
+        freebsd_123_aarch64:
+          remote: freebsd/12.3,arch=aarch64
+        freebsd_130_x86_64:
+          remote: freebsd/13.0,arch=x86_64
+        freebsd_130_aarch64:
+          remote: freebsd/13.0,arch=aarch64
+  - job: check_windows
+    displayName: Check Windows
+    steps:
+      - script: pip install https://github.com/ansible/ansible/archive/devel.tar.gz --disable-pip-version-check --user
+        displayName: Install ansible-core
+      - script: "ansible-test shell --remote-stage dev --target-windows remote:windows/$(version) -v -- whoami"
+        displayName: Check instance
+    strategy:
+      matrix:
+        2012:
+          version: 2012
+        2012-R2:
+          version: 2012-R2
+        2016:
+          version: 2016
+        2019:
+          version: 2019
+        2022:
+          version: 2022
