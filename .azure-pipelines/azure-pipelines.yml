@@ -11,10 +11,11 @@ pr:
       - main
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: 'ubuntu-22.04'
 
 jobs:
   - job: new
+    container: quay.io/ansible/azure-pipelines-test-container:3.0.0
     steps:
       - script: echo Hello World
         displayName: Hello World
