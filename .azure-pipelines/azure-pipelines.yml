@@ -19,7 +19,7 @@ variables:
 
 jobs:
   - job: new
-    container: $(defaultContainer)
+    container: ${{ variables.defaultContainer }}
     steps:
       - script: echo Hello World
         displayName: Hello World
